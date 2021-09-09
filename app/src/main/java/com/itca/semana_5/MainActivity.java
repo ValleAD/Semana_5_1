@@ -103,7 +103,70 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         SQLiteDatabase bd = admin.getWritableDatabase();
+        switch (view.getId())
+        {
+            case R.id.btnGuardar:
+                //Toast.makeText(this, "Has hecho click en el boton Alta", Toast.LENGTH_SHORT).show();
+                String codigo = et_codigo.getText().toString();
+                String descripcion = et_descripcion.getText().toString();
+                String precio = et_precio.getText().toString();
 
+                ContentValues registro = new ContentValues();
+                registro.put("codigo", codigo);
+                registro.put("descripcion", descripcion);
+                registro.put("precio", precio);
+
+                if(codigo.isEmpty()){
+                    et_codigo.setError("campo obligatorio");
+                }
+                else if (descripcion.isEmpty()){
+                    et_descripcion.setError("campo obligatorio");
+                }
+                else if (precio.isEmpty()){
+                    et_precio.setError("campo obligatorio");
+                } else {
+                    bd.insert("articulos", null, registro);
+                    bd.close();
+                    et_codigo.setText(null);
+                    et_descripcion.setText(null);
+                    et_precio.setText(null);
+                    Toast.makeText(this,"Registro guardado exactamente" ,Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.btnConsulta:
+                //Toast.makeText(this, "Has hecho click en el boton Consulta", Toast.LENGTH_SHORT).show();
+                codigo = et_codigo.getText().toString();
+                if(codigo.isEmpty()){
+                    et_codigo.setError("Campo obligatorio");
+                } else{
+                    Cursor file = bd.rawQuery("select descripcion, precio from articulos where codigo=" + codigo, null);
+                    if (file.moveToFirst()){
+                        et_descripcion.setText(file.getString(0));
+                        et_precio.setText(file.getString(1));
+                    } else {
+                        Toast.makeText(this, "No existe un articulo con dicho codigo", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            case R.id.btnConsulta1:
+                Toast.makeText(this, "Has hecho click en el boton Consulta 1", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnEliminar:
+                Toast.makeText(this, "Has hecho click en el boton Eliminar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnActualizar:
+                Toast.makeText(this, "Has hecho click en el boton Actualizar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnNuevo:
+                Toast.makeText(this, "Has hecho click en el boton Nuevo", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnSalir:
+                Toast.makeText(this, "Has hecho click en el boton Salir", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                //break;
+        }
     }
     /*
     @Override
