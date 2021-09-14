@@ -44,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:hint="Introduzca el codigo del producto"
+        android:drawableLeft="@drawable/dialpad"
+        android:hint=" Introduzca el codigo del producto"
         android:inputType="number"
         android:minHeight="48dp" />
 
@@ -53,7 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Introduzca la descripcion del producto"
+        android:drawableLeft="@drawable/edit"
+        android:hint=" Introduzca la descripcion del producto"
 
         android:inputType="text"
         android:minHeight="48dp" />
@@ -64,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/ic_baseline_attach_money_24"
-        android:hint="Introduzca el precio del producto"
+        android:hint=" Introduzca el precio del producto"
         android:inputType="number"
         android:minHeight="48dp" />
 
@@ -80,6 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guardar"
+            android:textSize="12dp"
             android:textStyle="bold"
             android:onClick="onClick"
             android:layout_marginRight="5dp" />
@@ -89,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Consultar por codigo"
+            android:textSize="12dp"
             android:textStyle="bold"/>
 
     </LinearLayout>
@@ -105,6 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Consultar por descripcion"
+            android:textSize="12dp"
             android:textStyle="bold"
             android:onClick="onClick"
             android:layout_marginRight="5dp" />
@@ -115,6 +120,7 @@
             android:layout_height="wrap_content"
             android:text="Eliminar"
             android:onClick="onClick"
+            android:textSize="12dp"
             android:textStyle="bold"/>
 
     </LinearLayout>
@@ -131,6 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Actualizar"
+            android:textSize="12dp"
             android:textStyle="bold"
             android:onClick="onClick"
             android:layout_marginRight="5dp" />
@@ -140,6 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nuevo"
+            android:textSize="12dp"
             android:textStyle="bold"
             android:onClick="onClick"
             android:layout_marginRight="5dp" />
@@ -150,6 +158,7 @@
             android:layout_height="wrap_content"
             android:text="Salir"
             android:onClick="onClick"
+            android:textSize="12dp"
             android:textStyle="bold" />
 
     </LinearLayout>

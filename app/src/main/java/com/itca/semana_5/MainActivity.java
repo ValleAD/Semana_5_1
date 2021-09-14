@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btnConsulta:
                 //Toast.makeText(this, "Has hecho click en el boton Consulta", Toast.LENGTH_SHORT).show();
+
                 codigo = et_codigo.getText().toString();
                 if(codigo.isEmpty()){
                     et_codigo.setError("Campo obligatorio");
@@ -145,27 +146,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         et_descripcion.setText(file.getString(0));
                         et_precio.setText(file.getString(1));
                     } else {
-                        Toast.makeText(this, "No existe un articulo con dicho codigo", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "No existe un artículo con código ingresado", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
             case R.id.btnConsulta1:
-                Toast.makeText(this, "Has hecho click en el boton Consulta 1", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Has hecho click en el boton Consulta 1", Toast.LENGTH_SHORT).show();
+
+                descripcion = et_descripcion.getText().toString();
+                if(descripcion.isEmpty()){
+                    et_descripcion.setError("Campo obligatorio");
+                } else{
+                    Cursor file = bd.rawQuery("select codigo, precio from articulos where descripcion=" + descripcion, null);
+                    if (file.moveToFirst()){
+                        et_codigo.setText(file.getString(0));
+                        et_precio.setText(file.getString(1));
+                    } else {
+                        Toast.makeText(this, "No existe un artículo con dicha descripción", Toast.LENGTH_SHORT).show();
+                    }
+                }
                 break;
             case R.id.btnEliminar:
-                Toast.makeText(this, "Has hecho click en el boton Eliminar", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Has hecho click en el boton Eliminar", Toast.LENGTH_SHORT).show();
+
+                codigo = et_codigo.getText().toString();
+                if (codigo.isEmpty()){
+                    et_codigo.setError("Campo obligatorio");
+                } else{
+                    int cant_2 = bd.delete("articulos", "codigo" + codigo, null);
+                    bd.close();
+                    et_codigo.setText("");
+                    et_descripcion.setText("");
+                    et_precio.setText("");
+                    if (cant_2 == 1)
+                        Toast.makeText(this, "Se eliminó el registro del articulo con dicho código", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(this, "No existe un artículo con código ingresado", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnActualizar:
-                Toast.makeText(this, "Has hecho click en el boton Actualizar", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Has hecho click en el boton Actualizar", Toast.LENGTH_SHORT).show();
+
+                codigo = et_codigo.getText().toString();
+                descripcion = et_descripcion.getText().toString();
+                if (codigo.isEmpty()){
+                    et_codigo.setError("Campo obligatorio");
+                } else {
+                    precio = et_precio.getText().toString();
+                    ContentValues register = new ContentValues();
+                    register.put("codigo", codigo);
+                    register.put("descripción", descripcion);
+                    register.put("precio", precio);
+                    int cant = bd.update("articulos", register, "codigo" + codigo, null);
+                    if (cant == 1)
+                        Toast.makeText(this, "Se actualizó el registro", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(this, "No existe un artículo con código ingresado", Toast.LENGTH_SHORT).show();
+
+                }
                 break;
             case R.id.btnNuevo:
-                Toast.makeText(this, "Has hecho click en el boton Nuevo", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Has hecho click en el boton Nuevo", Toast.LENGTH_SHORT).show();
+
+                et_codigo.setText(null);
+                et_descripcion.setText(null);
+                et_precio.setText(null);
                 break;
             case R.id.btnSalir:
-                Toast.makeText(this, "Has hecho click en el boton Salir", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Has hecho click en el boton Salir", Toast.LENGTH_SHORT).show();
+
+                finish();
                 break;
             default:
-                //break;
+                break;
         }
     }
     /*
